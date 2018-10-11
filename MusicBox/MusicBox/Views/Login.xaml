@@ -1,0 +1,36 @@
+﻿<ContentDialog
+    x:Class="MusicBox.Views.Login"
+    x:Name="Content_Dialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MusicBox.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <ScrollViewer>
+            <StackPanel x:Name="ParentStackPanel" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image Source="/Assets/LogoMusicBox.png" Margin="10, 0, 0, 5" Width="50px" Height="50px" HorizontalAlignment="Center"/>
+                <TextBlock Text="Welcome to MusicBox" TextAlignment="Center" FontSize="35px"/>
+                <TextBlock Text="Please log in to listen to music!" TextAlignment="Center"/>
+
+                <RelativePanel>
+                    <TextBox x:Name="Email" Header="Email" Margin="0, 30, 0, 0" HorizontalAlignment="Center" Text="" VerticalAlignment="Top" Width="293"/>
+                    <TextBlock x:Name="email" RelativePanel.Below="Email" Foreground="Red"></TextBlock>
+                </RelativePanel>
+
+                <RelativePanel>
+                    <PasswordBox x:Name="Password" Header="Password" Margin="0, 30, 0, 0" Width="293" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="password" RelativePanel.Below="Password" Foreground="Red"></TextBlock>
+                </RelativePanel>
+                
+                <RelativePanel HorizontalAlignment="Center" Margin="0, 30, 0, 0">
+                    <Button x:Name="BtnLogin" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Click="BtnLogin_Click" />
+                    <Button x:Name="BtnRegister" RelativePanel.RightOf="BtnLogin" Margin="30, 0, 0, 0" Content="Register" VerticalAlignment="Top" Click="BtnRegister_Click"/>
+                </RelativePanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>    
+</ContentDialog>
