@@ -15,10 +15,27 @@ namespace MusicBox.Service
 {
     class APIHandle
     {
+        private static string API_MEMBER_INFOR = "https://2-dot-backup-server-002.appspot.com/_api/v2/members/information";
         private static string API_REGISTER = "https://2-dot-backup-server-002.appspot.com/_api/v2/members";
         private static string API_LOGIN = "https://2-dot-backup-server-002.appspot.com/_api/v2/members/authentication";
         private static string API_SONG = "https://2-dot-backup-server-002.appspot.com/_api/v2/songs";
         private static string API_MINE = "https://2-dot-backup-server-002.appspot.com/_api/v2/songs/get-mine";
+
+        public async static Task<HttpResponseMessage> Get_Member_Infor()
+        {
+            StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+            StorageFile file = await storageFolder.GetFileAsync("token.txt");
+            string json = await FileIO.ReadTextAsync(file);
+            JsonValue jsonValue = JsonValue.Parse(json);
+            string token = jsonValue.GetObject().GetNamedString("token");
+            Debug.WriteLine(token);
+
+            HttpClient httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Add("Authorization", "Basic " + token);
+            var content = new StringContent("");
+            var response = httpClient.PostAsync(API_MEMBER_INFOR, content);
+            return response.Result;
+        }
 
         public async static Task<HttpResponseMessage> Sign_Up(Member member)
         {

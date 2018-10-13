@@ -49,19 +49,18 @@ namespace MusicBox.Views
             var responseContent = await response.Content.ReadAsStringAsync();
             if (response.StatusCode == HttpStatusCode.Created)
             {
-                Debug.WriteLine(responseContent);
                 var dialog = new ContentDialog()
                 {   
                     Title = "Success!",
+                    Width = 250,
                     MaxWidth = this.ActualWidth,
                     Content = "You have created a song",
                     CloseButtonText = "I know!"
                 };
-
-                //dialog.PrimaryButtonText = "I know";
-                //dialog.IsPrimaryButtonEnabled = true;
-
                 var result = await dialog.ShowAsync();
+
+                var rootFrame = Window.Current.Content as Frame;
+                rootFrame.Navigate(typeof(ListSong));
             }
             else
             {

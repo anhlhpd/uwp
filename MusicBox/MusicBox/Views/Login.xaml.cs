@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Data.Json;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -43,41 +44,6 @@ namespace MusicBox.Views
             rootFrame.Navigate(typeof(Register), null, new EntranceNavigationTransitionInfo());
         }
         
-
-        private async void GetAsync()
-        {
-            StorageFolder folder = ApplicationData.Current.LocalFolder;
-            StorageFile file = await folder.CreateFileAsync("authorization.txt", CreationCollisionOption.ReplaceExisting);
-            
-            await FileIO.WriteTextAsync(file, "Swift as a shadow");
-        }
-
-        public void Validate_Login(string emailText, string passwordText)
-        {
-            if (emailText == "")
-            {
-                this.email.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
-                this.email.Text = "Email can't be null.";
-            }
-            else
-            {
-                this.email.Text = "";
-            }
-            if (passwordText == "")
-            {
-                this.password.Text = "Password can't be null.";
-                this.password.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
-            }
-            else
-            {
-                this.password.Text = "";
-            }
-            if (emailText != "" && passwordText != "")
-            {
-                this.Hide();
-            }
-        }
-        
         private async void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
             var emailText = this.Email.Text;
@@ -100,16 +66,11 @@ namespace MusicBox.Views
             {
                 this.password.Text = "";
             }
-            //if (emailText != "" && passwordText != "")
-            //{
-            //    this.Hide();
-            //}
 
             var response = await APIHandle.Sign_In(emailText, passwordText);
             var responseContent = await response.Content.ReadAsStringAsync();
             if (response.StatusCode == HttpStatusCode.Created)
             {
-                Debug.WriteLine(responseContent);
                 TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(responseContent);
 
                 StorageFolder folder = ApplicationData.Current.LocalFolder;
@@ -118,11 +79,7 @@ namespace MusicBox.Views
 
                 this.Hide();
                 var rootFrame = Window.Current.Content as Frame;
-                rootFrame.Navigate(typeof(NavigationView));
-
-                //var rootFrame = Window.Current.Content as Frame;
-                //this.Hide();
-                //rootFrame.Navigate(typeof(NavigationView), null, new EntranceNavigationTransitionInfo());
+                rootFrame.Navigate(typeof(NavigationView), null, new EntranceNavigationTransitionInfo());
             }
             else
             {

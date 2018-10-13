@@ -1,13 +1,18 @@
 ﻿using MusicBox.Entity;
 using MusicBox.Service;
 using MusicBox.Views;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Data.Json;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Media.Capture;
@@ -18,6 +23,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
@@ -33,13 +39,37 @@ namespace MusicBox
 
         public MainPage()
         {
-            Load_Page();
+            Check_Member_Info();
             this.InitializeComponent();
         }
         public async void Load_Page()
         {
             Login login = new Login();
             await login.ShowAsync();
+        }
+
+        public async void Check_Member_Info()
+        {
+            var file = await ApplicationData.Current.LocalFolder.TryGetItemAsync("token.txt");
+            if (file != null)
+            {
+                var response = await APIHandle.Get_Member_Infor();
+                var responseContent = await response.Content.ReadAsStringAsync();
+                
+                var j = JsonConvert.DeserializeObject<Member>(responseContent);
+                if (j.email != null)
+                {
+                    this.Frame.Navigate(typeof(Views.NavigationView));
+                }
+                else
+                {
+                    Load_Page();
+                }                
+            }
+            else
+            {
+                Load_Page();
+            }
         }
     }
 }

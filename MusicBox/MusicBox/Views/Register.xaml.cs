@@ -43,6 +43,12 @@ namespace MusicBox.Views
             this.InitializeComponent();
         }
 
+        private void BtnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            var rootFrame = Window.Current.Content as Frame;
+            rootFrame.Navigate(typeof(MainPage));
+        }
+
         private async void Handle_Signup(object sender, RoutedEventArgs e)
         {
             // do validate first.
@@ -202,12 +208,6 @@ namespace MusicBox.Views
             {
                 this.ChooseFile.Text = "Can't open the picture.";
             }
-        }
-
-        private void BtnLogin_Click(object sender, RoutedEventArgs e)
-        {
-            var rootFrame = Window.Current.Content as Frame;
-            rootFrame.Navigate(typeof(MainPage));
         }
     }
 }

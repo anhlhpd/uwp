@@ -28,9 +28,9 @@
                             <DataTemplate>
                                 <Grid Padding="12" Background="Gray">
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
                                         <ColumnDefinition Width="250"/>
-                                        <ColumnDefinition Width="250"/>
-                                        <ColumnDefinition Width="250"/>
+                                        <ColumnDefinition Width="150"/>
                                         <ColumnDefinition Width="250"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="Thumbnail" HorizontalAlignment="Center" Style="{ThemeResource CaptionTextBlockStyle}"/>
@@ -46,9 +46,9 @@
                                 <Grid Height="48" >
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="48"/>
+                                        <ColumnDefinition Width="100"/>
                                         <ColumnDefinition Width="250"/>
-                                        <ColumnDefinition Width="250"/>
-                                        <ColumnDefinition Width="250"/>
+                                        <ColumnDefinition Width="150"/>
                                         <ColumnDefinition Width="250"/>
                                     </Grid.ColumnDefinitions>
                                     <Ellipse Height="32" Width="32" VerticalAlignment="Center">
@@ -59,6 +59,7 @@
                                     <Image Grid.Column="1" VerticalAlignment="Center" Source="{x:Bind thumbnail}" />
                                     <TextBlock Grid.Column="2" VerticalAlignment="Center" Text="{x:Bind name}"/>
                                     <TextBlock Grid.Column="3" VerticalAlignment="Center" Text="{x:Bind singer}"/>
+                                    <TextBlock Grid.Column="4" VerticalAlignment="Center" Text="{x:Bind description}"/>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>

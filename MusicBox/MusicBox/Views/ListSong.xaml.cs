@@ -1,5 +1,6 @@
 ﻿using MusicBox.Entity;
 using MusicBox.Service;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -34,11 +35,11 @@ namespace MusicBox.Views
         
         public ListSong()
         { 
-            Call();
+            Get_Songs();
             this.InitializeComponent();
         }
 
-        private async void Call() {
+        private async void Get_Songs() {
             this.list = new ObservableCollection<Song>();
             var response = await APIHandle.Get_List_Songs();
             var responseContent = await response.Content.ReadAsStringAsync();
@@ -56,7 +57,28 @@ namespace MusicBox.Views
             }
             else
             {
-                Debug.WriteLine("Error");
+                var dialog = new ContentDialog()
+                {
+                    Title = "Error!",
+                    MaxWidth = this.ActualWidth,
+                    Content = "There's an error! Please try later!",
+                    CloseButtonText = "I know!"
+                };
+                ErrorResponse errorObject = JsonConvert.DeserializeObject<ErrorResponse>(responseContent);
+                if (errorObject != null)
+                {
+                    foreach (var key in errorObject.error.Keys)
+                    {
+                        var textMessage = this.FindName(key);
+                        if (textMessage == null)
+                        {
+                            continue;
+                        }
+                        TextBlock textBlock = textMessage as TextBlock;
+                        textBlock.Text = errorObject.error[key];
+                        textBlock.Visibility = Visibility.Visible;
+                    }
+                }
             }
         }
     }
