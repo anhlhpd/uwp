@@ -46,12 +46,14 @@ namespace MusicBox.Views
         
         private async void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
+            var val = true;
             var emailText = this.Email.Text;
             var passwordText = this.Password.Password;
             if (emailText == "")
             {
                 this.email.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
-                this.email.Text = "Email can't be null.";
+                this.email.Text = "Email can't be empty";
+                val = false;
             }
             else
             {
@@ -59,46 +61,52 @@ namespace MusicBox.Views
             }
             if (passwordText == "")
             {
-                this.password.Text = "Password can't be null.";
+                this.password.Text = "Password can't be empty";
                 this.password.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
+                val = false;
             }
             else
             {
                 this.password.Text = "";
             }
-
-            var response = await APIHandle.Sign_In(emailText, passwordText);
-            var responseContent = await response.Content.ReadAsStringAsync();
-            if (response.StatusCode == HttpStatusCode.Created)
+            
+            if (val == true)
             {
-                TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(responseContent);
-
-                StorageFolder folder = ApplicationData.Current.LocalFolder;
-                StorageFile file = await folder.CreateFileAsync("token.txt", CreationCollisionOption.ReplaceExisting);
-                await FileIO.WriteTextAsync(file, responseContent);
-
-                this.Hide();
-                var rootFrame = Window.Current.Content as Frame;
-                rootFrame.Navigate(typeof(NavigationView), null, new EntranceNavigationTransitionInfo());
-            }
-            else
-            {
-                ErrorResponse errorObject = JsonConvert.DeserializeObject<ErrorResponse>(responseContent);
-                if (errorObject != null && errorObject.error.Count > 0)
+                var response = await APIHandle.Sign_In(emailText, passwordText);
+                var responseContent = await response.Content.ReadAsStringAsync();
+                if (response.StatusCode == HttpStatusCode.Created)
                 {
-                    foreach (var key in errorObject.error.Keys)
+                    TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(responseContent);
+
+                    StorageFolder folder = ApplicationData.Current.LocalFolder;
+                    StorageFile file = await folder.CreateFileAsync("token.txt", CreationCollisionOption.ReplaceExisting);
+                    await FileIO.WriteTextAsync(file, responseContent);
+
+                    this.Hide();
+                    var rootFrame = Window.Current.Content as Frame;
+                    rootFrame.Navigate(typeof(ListSong), null, new EntranceNavigationTransitionInfo());
+                }
+                else
+                {
+                    ErrorResponse errorObject = JsonConvert.DeserializeObject<ErrorResponse>(responseContent);
+                    if (errorObject != null && errorObject.error.Count > 0)
                     {
-                        var textMessage = this.FindName(key);
-                        if (textMessage == null)
+                        foreach (var key in errorObject.error.Keys)
                         {
-                            continue;
+                            var textMessage = this.FindName(key);
+                            if (textMessage == null)
+                            {
+                                continue;
+                            }
+                            TextBlock textBlock = textMessage as TextBlock;
+                            textBlock.Text = errorObject.error[key];
+                            textBlock.Visibility = Visibility.Visible;
                         }
-                        TextBlock textBlock = textMessage as TextBlock;
-                        textBlock.Text = errorObject.error[key];
-                        textBlock.Visibility = Visibility.Visible;
                     }
                 }
             }
+
+            
         }
     }
 }

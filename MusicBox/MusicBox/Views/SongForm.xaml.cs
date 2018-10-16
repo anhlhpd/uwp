@@ -33,7 +33,6 @@ namespace MusicBox.Views
         {
             this.InitializeComponent();
             this.currentSong = new Song();
-            //this.Player.MediaPlayer.Play();
         }
 
         private async void BtnCreateSong_Click(object sender, RoutedEventArgs e)

@@ -36,7 +36,6 @@ namespace MusicBox
     /// </summary>
     public sealed partial class MainPage : Page
     {
-
         public MainPage()
         {
             Check_Member_Info();
@@ -56,13 +55,19 @@ namespace MusicBox
                 var response = await APIHandle.Get_Member_Infor();
                 var responseContent = await response.Content.ReadAsStringAsync();
                 
-                var j = JsonConvert.DeserializeObject<Member>(responseContent);
-                if (j.email != null)
+                if (response.StatusCode == HttpStatusCode.Created)
                 {
-                    this.Frame.Navigate(typeof(Views.NavigationView));
+                    this.Frame.Navigate(typeof(Views.ListSong));
                 }
                 else
                 {
+                    var dialog = new ContentDialog()
+                    {
+                        Title = "Error!",
+                        MaxWidth = this.ActualWidth,
+                        Content = "There's an error! Please login again!",
+                        CloseButtonText = "I know!"
+                    };
                     Load_Page();
                 }                
             }

@@ -11,26 +11,26 @@
     <Grid>
         <SplitView x:ConnectionId='2' x:Name="MyNavigationView" IsPaneOpen="False" DisplayMode="CompactOverlay" CompactPaneLength="50" OpenPaneLength="250">
             <SplitView.Pane>
-                <StackPanel x:ConnectionId='4' x:Name="StackIcon" Margin="10, 50, 0, 0">
-                    <RadioButton x:ConnectionId='5' Tag="CreateSong" Style="{ThemeResource TextBlockButtonStyle}" Margin="0, 0, 0, 10"                          >
+                <StackPanel x:ConnectionId='5' x:Name="StackIcon" Margin="10, 50, 0, 0">
+                    <RadioButton x:ConnectionId='6' Tag="CreateSong" Style="{ThemeResource TextBlockButtonStyle}" Margin="0, 0, 0, 10"                          >
                         <StackPanel Orientation="Horizontal">
                             <SymbolIcon Symbol="Add" Margin="0, 0, 15, 0"/>
                             <TextBlock Text="Add Song" Margin="0, 3, 0, 0"/>
                         </StackPanel>
                     </RadioButton>
-                    <RadioButton x:ConnectionId='6' Tag="ListSong" Style="{ThemeResource TextBlockButtonStyle}" Margin="0, 0, 0, 10"                          >
+                    <RadioButton x:ConnectionId='7' Tag="ListSong" Style="{ThemeResource TextBlockButtonStyle}" Margin="0, 0, 0, 10"                          >
                         <StackPanel Orientation="Horizontal">
                             <SymbolIcon Symbol="Audio" Margin="0, 0, 15, 0"/>
                             <TextBlock Text="List Song" Margin="0, 3, 0, 0"/>
                         </StackPanel>
                     </RadioButton>
-                    <RadioButton x:ConnectionId='7' Tag="MyAccount" Style="{ThemeResource TextBlockButtonStyle}" Margin="0, 0, 0, 10"                          >
+                    <RadioButton x:ConnectionId='8' Tag="MyAccount" Style="{ThemeResource TextBlockButtonStyle}" Margin="0, 0, 0, 10"                          >
                         <StackPanel Orientation="Horizontal">
                             <SymbolIcon Symbol="Contact" Margin="0, 0, 15, 0"/>
                             <TextBlock Text="My Account" Margin="0, 3, 0, 0"/>
                         </StackPanel>
                     </RadioButton>
-                    <RadioButton x:ConnectionId='8' Style="{ThemeResource TextBlockButtonStyle}" Margin="0, 0, 0, 10"                          >
+                    <RadioButton x:ConnectionId='9' Style="{ThemeResource TextBlockButtonStyle}" Margin="0, 0, 0, 10"                          >
                         <StackPanel Orientation="Horizontal">
                             <SymbolIcon Symbol="Caption" Margin="0, 0, 15, 0"/>
                             <TextBlock Text="Another Page" Margin="0, 3, 0, 0"/>
@@ -39,12 +39,27 @@
                 </StackPanel>
             </SplitView.Pane>
             <SplitView.Content>
-                <Frame x:ConnectionId='9' x:Name="MainFrame"/>
+                <Frame x:ConnectionId='10' x:Name="MainFrame"/>
             </SplitView.Content>
         </SplitView>
         <Button x:ConnectionId='3'                      VerticalAlignment="Top" Margin="4, 4, 0, 0">
             <SymbolIcon Symbol="GlobalNavigationButton"/>
         </Button>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal" Background="#FFDEDEDE" Height="95">
+            <MediaElement x:ConnectionId='4' x:Name="MediaPlayer"  MaxWidth="860" AutoPlay="True"
+                        AreTransportControlsEnabled="True">
+                <MediaElement.TransportControls>
+                    <MediaTransportControls 
+                                        IsFastForwardButtonVisible="True" 
+                                        IsSkipForwardButtonVisible="True" 
+                                        IsVolumeButtonVisible="True"
+                                        IsNextTrackButtonVisible="True"
+                                        IsPreviousTrackButtonVisible="True"
+                                        IsSkipBackwardButtonVisible="True"
+                                        IsFastRewindButtonVisible="True"/>
+                </MediaElement.TransportControls>
+            </MediaElement>
+        </StackPanel>
     </Grid>
 </Page>
 

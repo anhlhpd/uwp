@@ -45,5 +45,20 @@
         <Button Click="Button_Click" VerticalAlignment="Top" Margin="4, 4, 0, 0">
             <SymbolIcon Symbol="GlobalNavigationButton"/>
         </Button>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal" Background="#FFDEDEDE" Height="95">
+            <MediaElement x:Name="MediaPlayer"  MaxWidth="860" AutoPlay="True"
+                        AreTransportControlsEnabled="True">
+                <MediaElement.TransportControls>
+                    <MediaTransportControls 
+                                        IsFastForwardButtonVisible="True" 
+                                        IsSkipForwardButtonVisible="True" 
+                                        IsVolumeButtonVisible="True"
+                                        IsNextTrackButtonVisible="True"
+                                        IsPreviousTrackButtonVisible="True"
+                                        IsSkipBackwardButtonVisible="True"
+                                        IsFastRewindButtonVisible="True"/>
+                </MediaElement.TransportControls>
+            </MediaElement>
+        </StackPanel>
     </Grid>
 </Page>

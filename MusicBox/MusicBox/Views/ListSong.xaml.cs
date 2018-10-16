@@ -29,15 +29,27 @@ namespace MusicBox.Views
     /// </summary>
     public sealed partial class ListSong : Page
     {
+        private bool isPlaying = false;
+
+        int onPlay = 0;
+
+        TimeSpan _position;
+
+        DispatcherTimer _timer = new DispatcherTimer();
+
         private ObservableCollection<Song> list;
 
         internal ObservableCollection<Song> List { get => list; set => list = value; }
-        
+
+        private Song currentSong;
+
         public ListSong()
         { 
             Get_Songs();
             this.InitializeComponent();
+            this.currentSong = new Song();
         }
+        
 
         private async void Get_Songs() {
             this.list = new ObservableCollection<Song>();
@@ -45,14 +57,11 @@ namespace MusicBox.Views
             var responseContent = await response.Content.ReadAsStringAsync();
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                Debug.WriteLine("Success");
                 var array = JArray.Parse(responseContent);
-                Debug.WriteLine(array);
                 foreach (var obj in array)
                 {
                     Song song = obj.ToObject<Song>();
                     this.list.Add(song);
-                    Debug.WriteLine(song.name);
                 }
             }
             else
@@ -62,10 +71,76 @@ namespace MusicBox.Views
                     Title = "Error!",
                     MaxWidth = this.ActualWidth,
                     Content = "There's an error! Please try later!",
-                    CloseButtonText = "I know!"
+                    CloseButtonText = "OK!"
                 };
                 ErrorResponse errorObject = JsonConvert.DeserializeObject<ErrorResponse>(responseContent);
                 if (errorObject != null)
+                {
+                    foreach (var key in errorObject.error.Keys)
+                    {
+                        var textMessage = this.FindName(key);
+                        if (textMessage == null)
+                        {
+                            continue;
+                        }
+                        TextBlock textBlock = textMessage as TextBlock;
+                        textBlock.Text = errorObject.error[key];
+                        textBlock.Visibility = Visibility.Visible;
+                    }
+                }
+            }
+        }
+
+        private void Load_Song(Song currentSong)
+        {
+            this.MediaPlayer.Source = new Uri(currentSong.link);
+        }
+
+        private void PlaySong()
+        {
+            MediaPlayer.Play();
+            isPlaying = true;
+        }
+
+        private void Click_Song(object sender, TappedRoutedEventArgs e)
+        {
+            StackPanel panel = sender as StackPanel;
+            Song selectedSong = panel.Tag as Song;
+            Debug.WriteLine(List[0].name);
+            onPlay = MenuList.SelectedIndex;
+            Load_Song(selectedSong);
+            PlaySong();
+        }
+
+        private async void BtnCreateSong_Click(object sender, RoutedEventArgs e)
+        {
+            this.currentSong.name = this.Name.Text;
+            this.currentSong.description = this.Description.Text;
+            this.currentSong.singer = this.Singer.Text;
+            this.currentSong.author = this.Author.Text;
+            this.currentSong.thumbnail = this.Thumbnail.Text;
+            this.currentSong.link = this.Link.Text;
+
+            var response = await APIHandle.Create_Song(this.currentSong);
+            var responseContent = await response.Content.ReadAsStringAsync();
+            if (response.StatusCode == HttpStatusCode.Created)
+            {
+                var dialog = new ContentDialog()
+                {
+                    Title = "Success!",
+                    Width = 250,
+                    MaxWidth = this.ActualWidth,
+                    Content = "You have created a song",
+                    CloseButtonText = "I know!"
+                };
+                var result = await dialog.ShowAsync();
+
+                var rootFrame = Window.Current.Content as Frame;
+            }
+            else
+            {
+                ErrorResponse errorObject = JsonConvert.DeserializeObject<ErrorResponse>(responseContent);
+                if (errorObject != null && errorObject.error.Count > 0)
                 {
                     foreach (var key in errorObject.error.Keys)
                     {

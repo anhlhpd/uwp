@@ -31,13 +31,13 @@
     <AppXManifest Include="C:\Users\Phuong Anh\Desktop\UWP\MusicBox\MusicBox\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-13T11:11:49.205</Modified>
+      <Modified>2018-10-16T13:22:55.566</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Phuong Anh\Desktop\UWP\MusicBox\MusicBox\bin\x86\Debug\MusicBox.exe">
       <PackagePath>entrypoint\MusicBox.exe</PackagePath>
-      <Modified>2018-10-13T11:11:48.704</Modified>
+      <Modified>2018-10-16T13:22:54.784</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Phuong Anh\.nuget\packages\microsoft.csharp\4.3.0\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -369,7 +369,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\system.private.servicemodel\4.1.3\runtimes\win7\lib\netcore50\System.Private.ServiceModel.dll">
       <PackagePath>System.Private.ServiceModel.dll</PackagePath>
-      <Modified>2018-07-19T10:47:06.000</Modified>
+      <Modified>2018-07-19T08:45:16.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\system.reflection.context\4.0.1\lib\netcore50\System.Reflection.Context.dll">
       <PackagePath>System.Reflection.Context.dll</PackagePath>
@@ -465,19 +465,19 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\system.servicemodel.duplex\4.0.4\lib\netcore50\System.ServiceModel.Duplex.dll">
       <PackagePath>System.ServiceModel.Duplex.dll</PackagePath>
-      <Modified>2018-07-19T08:45:20.000</Modified>
+      <Modified>2018-07-19T10:47:10.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\system.servicemodel.http\4.1.3\lib\netcore50\System.ServiceModel.Http.dll">
       <PackagePath>System.ServiceModel.Http.dll</PackagePath>
-      <Modified>2018-07-19T08:45:22.000</Modified>
+      <Modified>2018-07-19T10:47:12.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\system.servicemodel.nettcp\4.1.3\lib\netcore50\System.ServiceModel.NetTcp.dll">
       <PackagePath>System.ServiceModel.NetTcp.dll</PackagePath>
-      <Modified>2018-07-19T08:45:24.000</Modified>
+      <Modified>2018-07-19T10:47:14.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\system.servicemodel.primitives\4.1.3\lib\netcore50\System.ServiceModel.Primitives.dll">
       <PackagePath>System.ServiceModel.Primitives.dll</PackagePath>
-      <Modified>2018-07-19T08:45:24.000</Modified>
+      <Modified>2018-07-19T10:47:16.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\system.servicemodel.security\4.0.4\lib\netcore50\System.ServiceModel.Security.dll">
       <PackagePath>System.ServiceModel.Security.dll</PackagePath>
@@ -571,35 +571,35 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Phuong Anh\Desktop\UWP\MusicBox\MusicBox\bin\x86\Debug\MusicBox.xr.xml">
       <PackagePath>MusicBox.xr.xml</PackagePath>
-      <Modified>2018-10-11T12:51:29.087</Modified>
+      <Modified>2018-10-16T13:22:54.513</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Phuong Anh\Desktop\UWP\MusicBox\MusicBox\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2018-10-13T11:11:48.457</Modified>
+      <Modified>2018-10-16T13:22:54.541</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Phuong Anh\Desktop\UWP\MusicBox\MusicBox\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2018-10-13T11:11:48.457</Modified>
+      <Modified>2018-10-16T13:22:54.541</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Phuong Anh\Desktop\UWP\MusicBox\MusicBox\bin\x86\Debug\Views\ListSong.xbf">
       <PackagePath>Views\ListSong.xbf</PackagePath>
-      <Modified>2018-10-13T11:11:48.458</Modified>
+      <Modified>2018-10-16T13:22:54.542</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Phuong Anh\Desktop\UWP\MusicBox\MusicBox\bin\x86\Debug\Views\Login.xbf">
       <PackagePath>Views\Login.xbf</PackagePath>
-      <Modified>2018-10-13T11:11:48.458</Modified>
+      <Modified>2018-10-16T13:22:54.542</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Phuong Anh\Desktop\UWP\MusicBox\MusicBox\bin\x86\Debug\Views\NavigationView.xbf">
       <PackagePath>Views\NavigationView.xbf</PackagePath>
-      <Modified>2018-10-13T11:11:48.458</Modified>
+      <Modified>2018-10-16T13:22:54.542</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Phuong Anh\Desktop\UWP\MusicBox\MusicBox\bin\x86\Debug\Views\Register.xbf">
       <PackagePath>Views\Register.xbf</PackagePath>
-      <Modified>2018-10-13T11:11:48.458</Modified>
+      <Modified>2018-10-16T13:22:54.542</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Phuong Anh\Desktop\UWP\MusicBox\MusicBox\bin\x86\Debug\Views\SongForm.xbf">
       <PackagePath>Views\SongForm.xbf</PackagePath>
-      <Modified>2018-10-13T11:11:48.459</Modified>
+      <Modified>2018-10-16T13:22:54.543</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17134.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -608,11 +608,11 @@
     <AppxPackagedFile Include="C:\Users\Phuong Anh\Desktop\UWP\MusicBox\MusicBox\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-11T17:11:03.158</Modified>
+      <Modified>2018-10-16T13:12:49.889</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Phuong Anh\Desktop\UWP\MusicBox\MusicBox\bin\x86\Debug\Core\MusicBox.exe">
       <PackagePath>MusicBox.exe</PackagePath>
-      <Modified>2018-10-13T11:11:49.201</Modified>
+      <Modified>2018-10-16T13:22:55.558</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

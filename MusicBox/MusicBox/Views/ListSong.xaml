@@ -8,71 +8,121 @@
     xmlns:entity="using:MusicBox.Entity"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
+        <ScrollViewer>
+            <Pivot>
+                <Pivot.Title>
+                    <TextBlock Margin="10, 20, 0, 0" Text="Danh sách bài hát" FontSize="35px"/>
+                </Pivot.Title>
+                <Pivot.RightHeader>
+                    <CommandBar Margin="0, 0, 50, 0">
+                        <AppBarButton Icon="List"/>
+                        <AppBarButton Icon="Add"/>
+                        <AppBarButton Icon="AddFriend"/>
+                    </CommandBar>
+                </Pivot.RightHeader>
+                <PivotItem Header="List Song" Margin="0, 0, 0, 95">
+                    <Grid>
+                        <ListView ItemsSource="{x:Bind List, Mode=TwoWay}" x:Name="MenuList">
+                            <ListView.HeaderTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="12" Background="Gray">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="100"/>
+                                            <ColumnDefinition Width="250"/>
+                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition Width="250"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Thumbnail" HorizontalAlignment="Center" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                                        <TextBlock Grid.Column="1" Text="Name"  HorizontalAlignment="Center" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                                        <TextBlock Grid.Column="2" Text="Singer"  HorizontalAlignment="Center" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                                        <TextBlock Grid.Column="3" Text="Description"  HorizontalAlignment="Center" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.HeaderTemplate>
 
-    <ScrollViewer>
-        <Pivot>
-            <Pivot.Title>
-                <TextBlock Text="Danh sách bài hát" FontSize="35px"/>
-            </Pivot.Title>
-            <Pivot.RightHeader>
-                <CommandBar Margin="0, 0, 50, 0">
-                    <AppBarButton Icon="List"/>
-                    <AppBarButton Icon="Add"/>
-                    <AppBarButton Icon="AddFriend"/>
-                </CommandBar>
-            </Pivot.RightHeader>
-            <PivotItem Header="List Song">
-                <Grid>
-                    <ListView ItemsSource="{x:Bind List, Mode=TwoWay}">
-                        <ListView.HeaderTemplate>
-                            <DataTemplate>
-                                <Grid Padding="12" Background="Gray">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="100"/>
-                                        <ColumnDefinition Width="250"/>
-                                        <ColumnDefinition Width="150"/>
-                                        <ColumnDefinition Width="250"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Text="Thumbnail" HorizontalAlignment="Center" Style="{ThemeResource CaptionTextBlockStyle}"/>
-                                    <TextBlock Grid.Column="1" Text="Name"  HorizontalAlignment="Center" Style="{ThemeResource CaptionTextBlockStyle}"/>
-                                    <TextBlock Grid.Column="2" Text="Singer"  HorizontalAlignment="Center" Style="{ThemeResource CaptionTextBlockStyle}"/>
-                                    <TextBlock Grid.Column="3" Text="Description"  HorizontalAlignment="Center" Style="{ThemeResource CaptionTextBlockStyle}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.HeaderTemplate>
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:Name="TableDataTemplate" x:DataType="entity:Song">
+                                    <StackPanel Orientation="Horizontal" Tag="{Binding}" AutomationProperties.Name="{x:Bind name}" Tapped="Click_Song">
+                                        <Grid Height="100" >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="48"/>
+                                                <ColumnDefinition Width="100"/>
+                                                <ColumnDefinition Width="250"/>
+                                                <ColumnDefinition Width="150"/>
+                                                <ColumnDefinition Width="250"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Ellipse Height="32" Width="32" VerticalAlignment="Center">
+                                                <Ellipse.Fill>
+                                                    <ImageBrush ImageSource="Placeholder.png"/>
+                                                </Ellipse.Fill>
+                                            </Ellipse>
+                                            <Image Grid.Column="1" VerticalAlignment="Center" Source="{x:Bind thumbnail}" />
+                                            <TextBlock Grid.Column="2" VerticalAlignment="Center" Text="{x:Bind name}"/>
+                                            <TextBlock Grid.Column="3" VerticalAlignment="Center" Text="{x:Bind singer}"/>
+                                            <TextBlock Grid.Column="4" VerticalAlignment="Center" Text="{x:Bind description}"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </PivotItem>
+                <PivotItem Header="Add Song">
+                    <StackPanel x:Name="AddSongStackPanel" Margin="20, 0, 0, 0">
+                        <RelativePanel>
+                            <TextBox x:Name="Name" Margin="0, 30, 0, 0" Header="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Width="293"/>
+                            <TextBlock x:Name="name" RelativePanel.Below="Name" Foreground="Red"></TextBlock>
+                        </RelativePanel>
 
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:Name="TableDataTemplate" x:DataType="entity:Song">
-                                <Grid Height="48" >
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="48"/>
-                                        <ColumnDefinition Width="100"/>
-                                        <ColumnDefinition Width="250"/>
-                                        <ColumnDefinition Width="150"/>
-                                        <ColumnDefinition Width="250"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Ellipse Height="32" Width="32" VerticalAlignment="Center">
-                                        <Ellipse.Fill>
-                                            <ImageBrush ImageSource="Placeholder.png"/>
-                                        </Ellipse.Fill>
-                                    </Ellipse>
-                                    <Image Grid.Column="1" VerticalAlignment="Center" Source="{x:Bind thumbnail}" />
-                                    <TextBlock Grid.Column="2" VerticalAlignment="Center" Text="{x:Bind name}"/>
-                                    <TextBlock Grid.Column="3" VerticalAlignment="Center" Text="{x:Bind singer}"/>
-                                    <TextBlock Grid.Column="4" VerticalAlignment="Center" Text="{x:Bind description}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </Grid>
-            </PivotItem>
-            <PivotItem Header="Add Song">
-                <StackPanel>
-                    <TextBox Header="Song Name" />
-                    <TextBox Header="Link"/>
-                    <TextBox Header="Save"/>
-                </StackPanel>
-            </PivotItem>
-        </Pivot>
-    </ScrollViewer>
+                        <RelativePanel>
+                            <TextBox AcceptsReturn="True" x:Name="Description" Margin="0, 30, 0, 0" Header="Description" HorizontalAlignment="Left" VerticalAlignment="Top" Width="293" Height="100"/>
+                            <TextBlock x:Name="description" RelativePanel.Below="Description" Foreground="Red"></TextBlock>
+                        </RelativePanel>
+
+                        <RelativePanel>
+                            <TextBox x:Name="Singer" Margin="0, 30, 0, 0" Header="Singer" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="293"/>
+                            <TextBlock x:Name="singer" RelativePanel.Below="Singer" Foreground="Red"></TextBlock>
+                        </RelativePanel>
+
+                        <RelativePanel>
+                            <TextBox x:Name="Author" Margin="0, 30, 0, 0" Header="Author" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="293"/>
+                            <TextBlock x:Name="author" RelativePanel.Below="Author" Foreground="Red"></TextBlock>
+                        </RelativePanel>
+
+                        <RelativePanel>
+                            <TextBox x:Name="Link" Margin="0, 30, 0, 0" Header="Link" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="293"/>
+                            <TextBlock x:Name="link" RelativePanel.Below="Link" Foreground="Red"></TextBlock>
+                        </RelativePanel>
+
+                        <RelativePanel>
+                            <TextBox x:Name="Thumbnail" Margin="0, 30, 0, 0" Header="Thumbnail" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="293"/>
+                            <TextBlock x:Name="thumbnail" RelativePanel.Below="Thumbnail" Foreground="Red"></TextBlock>
+                        </RelativePanel>
+
+                        <RelativePanel HorizontalAlignment="Center" Margin="0, 30, 0, 0">
+                            <Button x:Name="BtnCreateSong" Margin="0, 0, 0, 0" Content="Create Song" HorizontalAlignment="Left" VerticalAlignment="Top" Click="BtnCreateSong_Click"/>
+                            <Button x:Name="BtnReset" Margin="30, 0, 0, 0" Content="Reset" RelativePanel.RightOf="BtnCreateSong" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        </RelativePanel>
+                    </StackPanel>
+                </PivotItem>
+            </Pivot>           
+
+        </ScrollViewer>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal" Background="#FFDEDEDE" Height="95">
+            <MediaElement x:Name="MediaPlayer" Width="Auto" AutoPlay="True"
+                        AreTransportControlsEnabled="True">
+                <MediaElement.TransportControls>
+                    <MediaTransportControls 
+                                        IsFastForwardButtonVisible="True" 
+                                        IsSkipForwardButtonVisible="True" 
+                                        IsVolumeButtonVisible="True"
+                                        IsNextTrackButtonVisible="True"
+                                        IsPreviousTrackButtonVisible="True"
+                                        IsSkipBackwardButtonVisible="True"
+                                        IsFastRewindButtonVisible="True"/>
+                </MediaElement.TransportControls>
+            </MediaElement>
+        </StackPanel>
+    </Grid>    
 </Page>

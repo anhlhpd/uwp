@@ -51,7 +51,6 @@ namespace MusicBox.Views
 
         private async void Handle_Signup(object sender, RoutedEventArgs e)
         {
-            // do validate first.
             this.currentMember.firstName = this.FirstName.Text;
             this.currentMember.lastName = this.LastName.Text;
             this.currentMember.email = this.Email.Text;
