@@ -25,6 +25,7 @@ namespace WindowStoreApplication
         public MainPage()
         {
             this.InitializeComponent();
+            MainFrame.Navigate(typeof(Views.AddPage));
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)

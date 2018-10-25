@@ -11,7 +11,7 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <ComboBox x:Name="Name" Header="Current files" Width="293" Margin="0, 0, 0, 10"
-                      ItemsSource="{Binding file.Name}"></ComboBox>
+                      ItemsSource="{x:Bind listFile}" SelectionChanged="Show_Content"/>
             <TextBox x:Name="Content" Header="File Content" Width="293" Height="150" Margin="0, 0, 0, 10"/>
         </StackPanel>
     </Grid>

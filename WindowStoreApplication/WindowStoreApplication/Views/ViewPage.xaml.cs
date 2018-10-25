@@ -42,15 +42,13 @@ namespace WindowStoreApplication.Views
             }
         }
 
-        private async void showContent(object sender, SelectionChangedEventArgs e)
+        private async void Show_Content(object sender, SelectionChangedEventArgs e)
         {
             ComboBox comboxBox = (ComboBox)sender;
-
-            Debug.WriteLine(comboxBox.SelectedValue);
             string fileName = comboxBox.SelectedValue.ToString();
             StorageFolder folder = ApplicationData.Current.LocalFolder;
-            var readfFile = await folder.GetFileAsync(fileName);
-            this.Content.Text = await FileIO.ReadTextAsync(readfFile);
+            var file = await folder.GetFileAsync(fileName);
+            this.Content.Text = await FileIO.ReadTextAsync(file);
         }
     }
 }
