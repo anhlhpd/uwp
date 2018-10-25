@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace WindowStoreApplication.Views
     /// </summary>
     public sealed partial class ViewPage : Page
     {
+        public ObservableCollection<String> listFile = new ObservableCollection<String>();
         public ViewPage()
         {
             this.InitializeComponent();
@@ -33,13 +35,22 @@ namespace WindowStoreApplication.Views
         private async void Page_Load()
         {
             StorageFolder folder = ApplicationData.Current.LocalFolder;
-            var files = await folder.GetFilesAsync();
             IReadOnlyList<StorageFile> fileList = await folder.GetFilesAsync();
             foreach (StorageFile file in fileList)
             {
-                Debug.WriteLine(file.Name + "\n");
+                listFile.Add(file.Name);
             }
-            Debug.WriteLine(files);
+        }
+
+        private async void showContent(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboxBox = (ComboBox)sender;
+
+            Debug.WriteLine(comboxBox.SelectedValue);
+            string fileName = comboxBox.SelectedValue.ToString();
+            StorageFolder folder = ApplicationData.Current.LocalFolder;
+            var readfFile = await folder.GetFileAsync(fileName);
+            this.Content.Text = await FileIO.ReadTextAsync(readfFile);
         }
     }
 }
