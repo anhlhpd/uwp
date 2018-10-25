@@ -1,0 +1,18 @@
+﻿<Page
+    x:Class="WindowStoreApplication.Views.ViewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WindowStoreApplication.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ComboBox x:Name="Name" Header="Current files" Width="293" Margin="0, 0, 0, 10"
+                      ItemsSource=""></ComboBox>
+            <TextBox x:Name="Content" Header="File Content" Width="293" Height="150" Margin="0, 0, 0, 10"/>
+        </StackPanel>
+    </Grid>
+</Page>
