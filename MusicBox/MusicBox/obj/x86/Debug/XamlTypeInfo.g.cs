@@ -189,7 +189,7 @@ namespace MusicBox.MusicBox_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[10];
+            _typeNameTable = new string[12];
             _typeNameTable[0] = "MusicBox.MainPage";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
@@ -197,11 +197,13 @@ namespace MusicBox.MusicBox_XamlTypeInfo
             _typeNameTable[4] = "MusicBox.Views.Login";
             _typeNameTable[5] = "Windows.UI.Xaml.Controls.ContentDialog";
             _typeNameTable[6] = "Windows.UI.Xaml.Controls.ContentControl";
-            _typeNameTable[7] = "MusicBox.Views.NavigationView";
-            _typeNameTable[8] = "MusicBox.Views.Register";
-            _typeNameTable[9] = "MusicBox.Views.SongForm";
+            _typeNameTable[7] = "MusicBox.Views.MyAccount";
+            _typeNameTable[8] = "MusicBox.Views.MySong";
+            _typeNameTable[9] = "MusicBox.Views.Register";
+            _typeNameTable[10] = "MusicBox.Views.SettingsPage";
+            _typeNameTable[11] = "MusicBox.Views.NavigationView";
 
-            _typeTable = new global::System.Type[10];
+            _typeTable = new global::System.Type[12];
             _typeTable[0] = typeof(global::MusicBox.MainPage);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
@@ -209,9 +211,11 @@ namespace MusicBox.MusicBox_XamlTypeInfo
             _typeTable[4] = typeof(global::MusicBox.Views.Login);
             _typeTable[5] = typeof(global::Windows.UI.Xaml.Controls.ContentDialog);
             _typeTable[6] = typeof(global::Windows.UI.Xaml.Controls.ContentControl);
-            _typeTable[7] = typeof(global::MusicBox.Views.NavigationView);
-            _typeTable[8] = typeof(global::MusicBox.Views.Register);
-            _typeTable[9] = typeof(global::MusicBox.Views.SongForm);
+            _typeTable[7] = typeof(global::MusicBox.Views.MyAccount);
+            _typeTable[8] = typeof(global::MusicBox.Views.MySong);
+            _typeTable[9] = typeof(global::MusicBox.Views.Register);
+            _typeTable[10] = typeof(global::MusicBox.Views.SettingsPage);
+            _typeTable[11] = typeof(global::MusicBox.Views.NavigationView);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -249,9 +253,11 @@ namespace MusicBox.MusicBox_XamlTypeInfo
         private object Activate_0_MainPage() { return new global::MusicBox.MainPage(); }
         private object Activate_3_ListSong() { return new global::MusicBox.Views.ListSong(); }
         private object Activate_4_Login() { return new global::MusicBox.Views.Login(); }
-        private object Activate_7_NavigationView() { return new global::MusicBox.Views.NavigationView(); }
-        private object Activate_8_Register() { return new global::MusicBox.Views.Register(); }
-        private object Activate_9_SongForm() { return new global::MusicBox.Views.SongForm(); }
+        private object Activate_7_MyAccount() { return new global::MusicBox.Views.MyAccount(); }
+        private object Activate_8_MySong() { return new global::MusicBox.Views.MySong(); }
+        private object Activate_9_Register() { return new global::MusicBox.Views.Register(); }
+        private object Activate_10_SettingsPage() { return new global::MusicBox.Views.SettingsPage(); }
+        private object Activate_11_NavigationView() { return new global::MusicBox.Views.NavigationView(); }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -300,23 +306,37 @@ namespace MusicBox.MusicBox_XamlTypeInfo
                 xamlType = new global::MusicBox.MusicBox_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 7:   //  MusicBox.Views.NavigationView
+            case 7:   //  MusicBox.Views.MyAccount
                 userType = new global::MusicBox.MusicBox_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_7_NavigationView;
+                userType.Activator = Activate_7_MyAccount;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 8:   //  MusicBox.Views.Register
+            case 8:   //  MusicBox.Views.MySong
                 userType = new global::MusicBox.MusicBox_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_8_Register;
+                userType.Activator = Activate_8_MySong;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 9:   //  MusicBox.Views.SongForm
+            case 9:   //  MusicBox.Views.Register
                 userType = new global::MusicBox.MusicBox_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_9_SongForm;
+                userType.Activator = Activate_9_Register;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 10:   //  MusicBox.Views.SettingsPage
+                userType = new global::MusicBox.MusicBox_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_10_SettingsPage;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 11:   //  MusicBox.Views.NavigationView
+                userType = new global::MusicBox.MusicBox_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_11_NavigationView;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;

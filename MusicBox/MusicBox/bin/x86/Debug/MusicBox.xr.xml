@@ -13,33 +13,49 @@
       <RootProperty Name="Background" />
       <RootProperty Name="ColumnDefinitions" />
       <RootProperty Name="Height" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="RowDefinitions" />
+      <RootProperty Name="ChildrenTransitions" />
       <RootMethod Name="GetColumn" />
       <RootMethod Name="SetColumn" />
+      <RootMethod Name="GetRow" />
+      <RootMethod Name="SetRow" />
     </RootType>
     <RootType FullName="MusicBox.MainPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.ScrollViewer">
       <RootProperty Name="Content" />
+      <RootProperty Name="VerticalScrollMode" />
+      <RootProperty Name="VerticalScrollBarVisibility" />
+      <RootProperty Name="Padding" />
+      <RootProperty Name="IsTabStop" />
+      <RootProperty Name="UseSystemFocusVisuals" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
-      <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="VerticalAlignment" />
-      <RootProperty Name="Orientation" />
       <RootProperty Name="Background" />
-      <RootProperty Name="Height" />
       <RootProperty Name="Children" />
       <RootProperty Name="Margin" />
+      <RootProperty Name="Orientation" />
       <RootProperty Name="Tag" />
+      <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Width" />
       <RootEvent Name="Tapped" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.MediaElement">
-      <RootProperty Name="Width" />
-      <RootProperty Name="AutoPlay" />
+    <RootType FullName="Windows.UI.Xaml.Controls.MediaPlayerElement">
+      <RootProperty Name="Background" />
       <RootProperty Name="AreTransportControlsEnabled" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Stretch" />
+      <RootProperty Name="IsEnabled" />
       <RootProperty Name="TransportControls" />
-      <RootProperty Name="MaxWidth" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.MediaTransportControls">
+      <RootProperty Name="IsCompact" />
+      <RootProperty Name="IsZoomButtonVisible" />
+      <RootProperty Name="IsZoomEnabled" />
+      <RootProperty Name="IsPlaybackRateButtonVisible" />
+      <RootProperty Name="IsPlaybackRateEnabled" />
       <RootProperty Name="IsFastForwardButtonVisible" />
       <RootProperty Name="IsSkipForwardButtonVisible" />
       <RootProperty Name="IsVolumeButtonVisible" />
@@ -47,14 +63,16 @@
       <RootProperty Name="IsPreviousTrackButtonVisible" />
       <RootProperty Name="IsSkipBackwardButtonVisible" />
       <RootProperty Name="IsFastRewindButtonVisible" />
+      <RootProperty Name="IsFastForwardEnabled" />
+      <RootProperty Name="IsFastRewindEnabled" />
+      <RootProperty Name="IsSkipBackwardEnabled" />
+      <RootProperty Name="IsSkipForwardEnabled" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Pivot">
       <RootProperty Name="Title" />
-      <RootProperty Name="RightHeader" />
       <RootProperty Name="Items" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
-      <RootProperty Name="Margin" />
       <RootProperty Name="Text" />
       <RootProperty Name="FontSize" />
       <RootProperty Name="Foreground" />
@@ -62,13 +80,11 @@
       <RootProperty Name="Style" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="TextAlignment" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.CommandBar">
       <RootProperty Name="Margin" />
-      <RootProperty Name="PrimaryCommands" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.AppBarButton">
-      <RootProperty Name="Icon" />
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="TextWrapping" />
+      <RootProperty Name="FontWeight" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.PivotItem">
       <RootProperty Name="Header" />
@@ -77,8 +93,8 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.RelativePanel">
       <RootProperty Name="Children" />
-      <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Margin" />
+      <RootProperty Name="HorizontalAlignment" />
       <RootMethod Name="GetRightOf" />
       <RootMethod Name="SetRightOf" />
       <RootMethod Name="GetBelow" />
@@ -150,29 +166,27 @@
       <RootProperty Name="VerticalAlignment" />
     </RootType>
     <RootType FullName="MusicBox.Views.Login" />
-    <RootType FullName="Windows.UI.Xaml.Controls.SplitView">
-      <RootProperty Name="IsPaneOpen" />
-      <RootProperty Name="DisplayMode" />
-      <RootProperty Name="CompactPaneLength" />
-      <RootProperty Name="OpenPaneLength" />
-      <RootProperty Name="Pane" />
-      <RootProperty Name="Content" />
+    <RootType FullName="Windows.UI.Xaml.Controls.RowDefinition">
+      <RootProperty Name="Height" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.SymbolIcon">
-      <RootProperty Name="Symbol" />
-      <RootProperty Name="Margin" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Border">
+      <RootProperty Name="Background" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.RadioButton">
+    <RootType FullName="Windows.UI.Xaml.Controls.ComboBox">
+      <RootProperty Name="Width" />
+      <RootProperty Name="Items" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ComboBoxItem">
       <RootProperty Name="Tag" />
-      <RootProperty Name="Style" />
-      <RootProperty Name="Margin" />
       <RootProperty Name="Content" />
-      <RootProperty Name="IsChecked" />
-      <RootEvent Name="Click" />
-      <RootEvent Name="Checked" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.Frame" />
-    <RootType FullName="MusicBox.Views.NavigationView" />
+    <RootType FullName="Windows.UI.Xaml.Controls.GridViewHeaderItem">
+      <RootProperty Name="Content" />
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="FontWeight" />
+    </RootType>
+    <RootType FullName="MusicBox.Views.MyAccount" />
+    <RootType FullName="MusicBox.Views.MySong" />
     <RootType FullName="Windows.UI.Xaml.Controls.CalendarDatePicker">
       <RootProperty Name="Header" />
       <RootProperty Name="HorizontalAlignment" />
@@ -180,7 +194,56 @@
       <RootProperty Name="Width" />
       <RootEvent Name="DateChanged" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.RadioButton">
+      <RootProperty Name="Content" />
+      <RootProperty Name="Tag" />
+      <RootProperty Name="IsChecked" />
+      <RootEvent Name="Checked" />
+    </RootType>
     <RootType FullName="MusicBox.Views.Register" />
-    <RootType FullName="MusicBox.Views.SongForm" />
+    <RootType FullName="Windows.UI.Xaml.VisualStateManager">
+      <RootMethod Name="GetVisualStateGroups" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.TransitionCollection" />
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.EntranceThemeTransition" />
+    <RootType FullName="Windows.UI.Xaml.VisualStateGroup">
+      <RootProperty Name="States" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.VisualState">
+      <RootProperty Name="StateTriggers" />
+      <RootProperty Name="Setters" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.AdaptiveTrigger">
+      <RootProperty Name="MinWindowWidth" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Setter">
+      <RootProperty Name="Target" />
+      <RootProperty Name="Value" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
+    <RootType FullName="MusicBox.Views.SettingsPage" />
+    <RootType FullName="Windows.UI.Xaml.Controls.NavigationView">
+      <RootProperty Name="CompactModeThresholdWidth" />
+      <RootProperty Name="ExpandedModeThresholdWidth" />
+      <RootProperty Name="IsSettingsVisible" />
+      <RootProperty Name="AutoSuggestBox" />
+      <RootProperty Name="MenuItems" />
+      <RootProperty Name="Content" />
+      <RootEvent Name="Loaded" />
+      <RootEvent Name="ItemInvoked" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.AutoSuggestBox">
+      <RootProperty Name="QueryIcon" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.NavigationViewItem">
+      <RootProperty Name="Content" />
+      <RootProperty Name="Tag" />
+      <RootProperty Name="Icon" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Frame">
+      <RootProperty Name="ContentTransitions" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.NavigationThemeTransition" />
+    <RootType FullName="MusicBox.Views.NavigationView" />
   </Roots.RootTypes>
 </Roots>

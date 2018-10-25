@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -22,6 +24,62 @@ namespace MusicBox
     /// </summary>
     sealed partial class App : Application
     {
+        private const string SelectedAppThemeKey = "SelectedAppTheme";
+
+        /// <summary>
+        /// Gets the current actual theme of the app based on the requested theme of the
+        /// root element, or if that value is Default, the requested theme of the Application.
+        /// </summary>
+        public static ElementTheme ActualTheme
+        {
+            get
+            {
+                if (Window.Current.Content is FrameworkElement rootElement)
+                {
+                    if (rootElement.RequestedTheme != ElementTheme.Default)
+                    {
+                        return rootElement.RequestedTheme;
+                    }
+                }
+
+                return GetEnum<ElementTheme>(Current.RequestedTheme.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets (with LocalSettings persistence) the RequestedTheme of the root element.
+        /// </summary>
+        public static ElementTheme RootTheme
+        {
+            get
+            {
+                if (Window.Current.Content is FrameworkElement rootElement)
+                {
+                    return rootElement.RequestedTheme;
+                }
+
+                return ElementTheme.Default;
+            }
+            set
+            {
+                if (Window.Current.Content is FrameworkElement rootElement)
+                {
+                    rootElement.RequestedTheme = value;
+                }
+
+                ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey] = value.ToString();
+            }
+        }
+
+        public static TEnum GetEnum<TEnum>(string text) where TEnum : struct
+        {
+            if (!typeof(TEnum).GetTypeInfo().IsEnum)
+            {
+                throw new InvalidOperationException("Generic parameter 'TEnum' must be an enum.");
+            }
+            return (TEnum)Enum.Parse(typeof(TEnum), text);
+        }
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().

@@ -87,5 +87,21 @@ namespace MusicBox.Service
             Debug.WriteLine(response.Result);
             return response.Result;
         }
+
+        public async static Task<HttpResponseMessage> Get_My_Songs()
+        {
+            StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+            StorageFile file = await storageFolder.GetFileAsync("token.txt");
+            string json = await FileIO.ReadTextAsync(file);
+            JsonValue jsonValue = JsonValue.Parse(json);
+            string token = jsonValue.GetObject().GetNamedString("token");
+
+            HttpClient httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Add("Authorization", "Basic " + token);
+            var response = httpClient.GetAsync(API_MINE, 0);
+
+            Debug.WriteLine(response.Result);
+            return response.Result;
+        }
     }
 }

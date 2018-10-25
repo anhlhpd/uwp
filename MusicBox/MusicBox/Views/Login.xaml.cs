@@ -43,8 +43,8 @@ namespace MusicBox.Views
             this.Hide();
             rootFrame.Navigate(typeof(Register), null, new EntranceNavigationTransitionInfo());
         }
-        
-        private async void BtnLogin_Click(object sender, RoutedEventArgs e)
+
+        public bool Validate_Login()
         {
             var val = true;
             var emailText = this.Email.Text;
@@ -69,10 +69,15 @@ namespace MusicBox.Views
             {
                 this.password.Text = "";
             }
-            
-            if (val == true)
+
+            return val;
+        }
+        
+        private async void BtnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            if (Validate_Login() == true)
             {
-                var response = await APIHandle.Sign_In(emailText, passwordText);
+                var response = await APIHandle.Sign_In(this.Email.Text, this.Password.Password);
                 var responseContent = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode == HttpStatusCode.Created)
                 {
@@ -84,7 +89,7 @@ namespace MusicBox.Views
 
                     this.Hide();
                     var rootFrame = Window.Current.Content as Frame;
-                    rootFrame.Navigate(typeof(ListSong), null, new EntranceNavigationTransitionInfo());
+                    rootFrame.Navigate(typeof(NavigationView), null, new EntranceNavigationTransitionInfo());
                 }
                 else
                 {

@@ -6,59 +6,49 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    xmlns:Windows10FallCreatorsUpdate="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 5)"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+
     <Grid>
-        <SplitView x:Name="MyNavigationView" IsPaneOpen="False" DisplayMode="CompactOverlay" CompactPaneLength="50" OpenPaneLength="250">
-            <SplitView.Pane>
-                <StackPanel x:Name="StackIcon" Margin="10, 50, 0, 0">
-                    <RadioButton Tag="CreateSong" Style="{ThemeResource TextBlockButtonStyle}" Margin="0, 0, 0, 10" Click="RadioButton_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <SymbolIcon Symbol="Add" Margin="0, 0, 15, 0"/>
-                            <TextBlock Text="Add Song" Margin="0, 3, 0, 0"/>
-                        </StackPanel>
-                    </RadioButton>
-                    <RadioButton Tag="ListSong" Style="{ThemeResource TextBlockButtonStyle}" Margin="0, 0, 0, 10" Click="RadioButton_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <SymbolIcon Symbol="Audio" Margin="0, 0, 15, 0"/>
-                            <TextBlock Text="List Song" Margin="0, 3, 0, 0"/>
-                        </StackPanel>
-                    </RadioButton>
-                    <RadioButton Tag="MyAccount" Style="{ThemeResource TextBlockButtonStyle}" Margin="0, 0, 0, 10" Click="RadioButton_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <SymbolIcon Symbol="Contact" Margin="0, 0, 15, 0"/>
-                            <TextBlock Text="My Account" Margin="0, 3, 0, 0"/>
-                        </StackPanel>
-                    </RadioButton>
-                    <RadioButton Style="{ThemeResource TextBlockButtonStyle}" Margin="0, 0, 0, 10" Click="RadioButton_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <SymbolIcon Symbol="Caption" Margin="0, 0, 15, 0"/>
-                            <TextBlock Text="Another Page" Margin="0, 3, 0, 0"/>
-                        </StackPanel>
-                    </RadioButton>
-                </StackPanel>
-            </SplitView.Pane>
-            <SplitView.Content>
-                <Frame x:Name="MainFrame"/>
-            </SplitView.Content>
-        </SplitView>
-        <Button Click="Button_Click" VerticalAlignment="Top" Margin="4, 4, 0, 0">
-            <SymbolIcon Symbol="GlobalNavigationButton"/>
-        </Button>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal" Background="#FFDEDEDE" Height="95">
-            <MediaElement x:Name="MediaPlayer"  MaxWidth="860" AutoPlay="True"
-                        AreTransportControlsEnabled="True">
-                <MediaElement.TransportControls>
-                    <MediaTransportControls 
-                                        IsFastForwardButtonVisible="True" 
-                                        IsSkipForwardButtonVisible="True" 
-                                        IsVolumeButtonVisible="True"
-                                        IsNextTrackButtonVisible="True"
-                                        IsPreviousTrackButtonVisible="True"
-                                        IsSkipBackwardButtonVisible="True"
-                                        IsFastRewindButtonVisible="True"/>
-                </MediaElement.TransportControls>
-            </MediaElement>
-        </StackPanel>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger Windows10FallCreatorsUpdate:MinWindowWidth="{x:Bind NavView.CompactModeThresholdWidth}" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="NavView.PaneDisplayMode" Value="Top"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Windows10FallCreatorsUpdate:NavigationView x:Name="NavView"
+            CompactModeThresholdWidth="0" ExpandedModeThresholdWidth="50"
+                Loaded="NavView_Loaded" ItemInvoked="NavView_ItemInvoked"
+                     IsSettingsVisible="True">
+            <NavigationView.AutoSuggestBox>
+                <AutoSuggestBox x:Name="SearchBox" QueryIcon="Find"/>
+            </NavigationView.AutoSuggestBox>
+            <NavigationView.MenuItems>
+                <NavigationViewItem x:Name="ListSong" Content="List Song"
+                                    Tag="ListSong" Icon="Library"/>
+                <NavigationViewItem x:Name="MySong" Content="My Song"
+                                    Tag="MySong" Icon="Audio"/>
+                <NavigationViewItem Content="My Account" x:Name="MyAccount"
+                                    Tag="MyAccount" Icon="Admin" />
+            </NavigationView.MenuItems>
+
+            <Frame x:Name="ContentFrame">
+                <Frame.ContentTransitions>
+                    <TransitionCollection>
+                        <NavigationThemeTransition/>
+                    </TransitionCollection>
+                </Frame.ContentTransitions>
+            </Frame>
+        </Windows10FallCreatorsUpdate:NavigationView>
     </Grid>
 </Page>

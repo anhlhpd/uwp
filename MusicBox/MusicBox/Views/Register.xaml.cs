@@ -49,39 +49,116 @@ namespace MusicBox.Views
             rootFrame.Navigate(typeof(MainPage));
         }
 
-        private async void Handle_Signup(object sender, RoutedEventArgs e)
+        public bool Validate_Register()
         {
-            this.currentMember.firstName = this.FirstName.Text;
-            this.currentMember.lastName = this.LastName.Text;
-            this.currentMember.email = this.Email.Text;
-            this.currentMember.password = this.Password.Password.ToString();
-            this.currentMember.avatar = this.ImageUrl.Text;
-            this.currentMember.phone = this.Phone.Text;
-            this.currentMember.address = this.Address.Text;
-            this.currentMember.introduction = this.Introduction.Text;
-            
-            var response = await APIHandle.Sign_Up(this.currentMember);
-            var responseContent = await response.Content.ReadAsStringAsync();
-            if (response.StatusCode == HttpStatusCode.Created)
+            var val = true;
+            var emailText = this.Email.Text;
+            var passwordText = this.Password.Password;
+            var firstNameText = this.FirstName.Text;
+            var addressText = this.Address.Text;
+            var phoneText = this.Phone.Text;
+            var avatarText = this.ImageUrl.Text;
+
+            if (emailText == "")
             {
-                var rootFrame = Window.Current.Content as Frame;
-                rootFrame.Navigate(typeof(MainPage), null, new EntranceNavigationTransitionInfo());                
+                this.email.Text = "You have to fill in this blank.";
+                val = false;
             }
             else
             {
-                ErrorResponse errorObject = JsonConvert.DeserializeObject<ErrorResponse>(responseContent);
-                if (errorObject != null && errorObject.error.Count > 0)
+                this.email.Text = "";
+            }
+
+            if (passwordText == "")
+            {
+                this.password.Text = "You have to fill in this blank.";
+                val = false;
+            }
+            else
+            {
+                this.password.Text = "";
+            }
+
+            if (firstNameText == "")
+            {
+                this.firstName.Text = "You have to fill in this blank.";
+                val = false;
+            }
+            else
+            {
+                this.firstName.Text = "";
+            }
+
+            if (addressText == "")
+            {
+                this.address.Text = "You have to fill in this blank.";
+                val = false;
+            }
+            else
+            {
+                this.address.Text = "";
+            }
+
+            if (phoneText == "")
+            {
+                this.phone.Text = "You have to fill in this blank.";
+                val = false;
+            }
+            else
+            {
+                this.phone.Text = "";
+            }
+
+            if (avatarText == "")
+            {
+                this.avatar.Text = "You have to fill in this blank.";
+                val = false;
+            }
+            else
+            {
+                this.avatar.Text = "";
+            }
+
+            return val;
+        }
+
+        private async void Handle_Signup(object sender, RoutedEventArgs e)
+        {
+            if (Validate_Register())
+            {
+                this.currentMember.firstName = this.FirstName.Text;
+                this.currentMember.lastName = this.LastName.Text;
+                this.currentMember.email = this.Email.Text;
+                this.currentMember.password = this.Password.Password.ToString();
+                this.currentMember.avatar = this.ImageUrl.Text;
+                this.currentMember.phone = this.Phone.Text;
+                this.currentMember.address = this.Address.Text;
+                this.currentMember.introduction = this.Introduction.Text;
+
+                var response = await APIHandle.Sign_Up(this.currentMember);
+                var responseContent = await response.Content.ReadAsStringAsync();
+                if (response.StatusCode == HttpStatusCode.Created)
                 {
-                    foreach (var key in errorObject.error.Keys)
+                    var rootFrame = Window.Current.Content as Frame;
+                    rootFrame.Navigate(typeof(MainPage), null, new EntranceNavigationTransitionInfo());
+                }
+                else
+                {
+                    ErrorResponse errorObject = JsonConvert.DeserializeObject<ErrorResponse>(responseContent);
+                    if (errorObject != null && errorObject.error.Count > 0)
                     {
-                        var textMessage = this.FindName(key);
-                        if (textMessage == null)
+                        foreach (var key in errorObject.error.Keys)
                         {
-                            continue;
+                            var textMessage = this.FindName(key);
+                            if (textMessage == null)
+                            {
+                                continue;
+                            }
+                            TextBlock textBlock = textMessage as TextBlock;
+                            textBlock.Text = errorObject.error[key];
+                            Debug.WriteLine(errorObject.error[key]);
+                            textBlock.Visibility = Visibility.Visible;
                         }
-                        TextBlock textBlock = textMessage as TextBlock;
-                        textBlock.Text = errorObject.error[key];
-                        textBlock.Visibility = Visibility.Visible;
                     }
                 }
             }
@@ -189,24 +266,24 @@ namespace MusicBox.Views
             this.currentMember.birthday = sender.Date.Value.ToString("yyyy-MM-dd");
         }
 
-        private async void Choose_File(object sender, RoutedEventArgs e)
-        {
-            var picker = new Windows.Storage.Pickers.FileOpenPicker();
-            picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
-            picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
-            picker.FileTypeFilter.Add(".jpg");
-            picker.FileTypeFilter.Add(".jpeg");
-            picker.FileTypeFilter.Add(".png");
+        //private async void Choose_File(object sender, RoutedEventArgs e)
+        //{
+        //    var picker = new Windows.Storage.Pickers.FileOpenPicker();
+        //    picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
+        //    picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
+        //    picker.FileTypeFilter.Add(".jpg");
+        //    picker.FileTypeFilter.Add(".jpeg");
+        //    picker.FileTypeFilter.Add(".png");
             
-            StorageFile file = await picker.PickSingleFileAsync();
-            if (file != null)
-            {
-                this.ChooseFile.Text = file.Name;
-            }
-            else
-            {
-                this.ChooseFile.Text = "Can't open the picture.";
-            }
-        }
+        //    StorageFile file = await picker.PickSingleFileAsync();
+        //    if (file != null)
+        //    {
+        //        this.ChooseFile.Text = file.Name;
+        //    }
+        //    else
+        //    {
+        //        this.ChooseFile.Text = "Can't open the picture.";
+        //    }
+        //}
     }
 }

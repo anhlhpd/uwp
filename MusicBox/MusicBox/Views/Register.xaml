@@ -9,55 +9,55 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <ScrollViewer>
-        <RelativePanel Margin="30, 50, 0, 0" x:Name="ParentStackPanel">
+        <RelativePanel Margin="30, 50, 0, 20" x:Name="ParentStackPanel">
             <StackPanel x:Name="Header" HorizontalAlignment="Center" Margin="200, 0, 0, 0">
                 <Image Source="/Assets/LogoMusicBox.png" Margin="10, 0, 0, 5" Width="50px" Height="50px" HorizontalAlignment="Center"></Image>
                 <TextBlock Text="Welcome to MusicBox" TextAlignment="Center" FontSize="35px" />
                 <TextBlock Text="Register to listen to music!" TextAlignment="Center"/>
             </StackPanel>
-            
+
             <StackPanel HorizontalAlignment="Left" Width="460" x:Name="LeftPanel" Margin="0, 100, 0, 0">
-                <RelativePanel>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
                     <TextBox x:Name="Email" Header="Email" Margin="0, 30, 0, 0" Width="293" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="email" RelativePanel.Below="Email" Foreground="Red"></TextBlock>
-                </RelativePanel>
-                <RelativePanel>
+                    <TextBlock x:Name="email" Foreground="Red"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
                     <PasswordBox x:Name="Password" Header="Password" Margin="0, 30, 0, 0" Width="293" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="password" RelativePanel.Below="Password" Foreground="Red"></TextBlock>
-                </RelativePanel>
-                <RelativePanel>
+                    <TextBlock x:Name="password" Foreground="Red"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
                     <TextBox x:Name="FirstName" Header="First Name" Margin="0, 30, 0, 0" Width="293" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="firstName" RelativePanel.Below="FirstName" Foreground="Red"></TextBlock>
-                </RelativePanel>
-                <RelativePanel>
+                    <TextBlock x:Name="firstName" Foreground="Red"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
                     <TextBox x:Name="LastName" Header="Last Name" Margin="0, 30, 0, 0" Width="293" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="lastname" RelativePanel.Below="LastName" Foreground="Red"></TextBlock>
-                </RelativePanel>
-                <RelativePanel>
+                    <TextBlock x:Name="lastname" Foreground="Red"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
                     <TextBox AcceptsReturn="True" x:Name="Introduction" Margin="0, 30, 0, 0" Header="Introduction" HorizontalAlignment="Center" VerticalAlignment="Top" Width="293" Height="100"/>
-                    <TextBlock x:Name="introduction" RelativePanel.Below="Introduction" Foreground="Red"></TextBlock>
-                </RelativePanel>
+                    <TextBlock x:Name="introduction" Foreground="Red"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                    <TextBox x:Name="Phone" Header="Phone Number" Margin="0, 30, 0, 0" Width="293" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="phone" Foreground="Red"></TextBlock>
+                </StackPanel>
             </StackPanel>
 
             <StackPanel HorizontalAlignment="Right" Width="430" RelativePanel.RightOf="LeftPanel" Margin="0, 100, 0, 0">
                 <RelativePanel>
                     <TextBox x:Name="ImageUrl" Margin="0, 30, 0, 0" Header="Avatar Url" HorizontalAlignment="Center" VerticalAlignment="Top" Width="293"/>
-                    <TextBlock x:Name="avatar" RelativePanel.Below="ImageUrl"/>
+                    <TextBlock x:Name="avatar" RelativePanel.Below="ImageUrl" Foreground="Red"/>
                 </RelativePanel>
 
                 <Image x:Name="MyAvatar" Width="150" Height="150"/>
 
                 <Button Content="Capture Your Photo" HorizontalAlignment="Center" Margin="0, 30, 0, 0" Click="Capture_Photo" />
-                <RelativePanel Margin="0, 30, 0, 0">
+                <!--<RelativePanel Margin="0, 30, 0, 0">
                     <TextBox x:Name="ChooseFile" Header="Your file" Width="293"></TextBox>
                     <Button RelativePanel.RightOf="ChooseFile" Margin="20, 28, 0, 0" Click="Choose_File">
                         <SymbolIcon Symbol="Add"></SymbolIcon>
                     </Button>
-                </RelativePanel>
-                <RelativePanel>
-                    <TextBox x:Name="Phone" Header="Phone Number" Margin="0, 30, 0, 0" Width="293" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="phone" RelativePanel.Below="Phone"></TextBlock>
-                </RelativePanel>
+                </RelativePanel>-->
                 <RelativePanel>
                     <TextBox x:Name="Address" Header="Address" Margin="0, 30, 0, 0" Width="293" VerticalAlignment="Top"/>
                     <TextBlock x:Name="address" RelativePanel.Below="Address" Foreground="Red"></TextBlock>
@@ -76,11 +76,10 @@
                     <TextBlock x:Name="birthday" RelativePanel.Below="BirthDay" Foreground="Red"></TextBlock>
                 </RelativePanel>
             </StackPanel>
-
-            <RelativePanel HorizontalAlignment="Center" Margin="0, 30, 0, 0" RelativePanel.Below="LeftPanel">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0, 30, 0, 0" VerticalAlignment="Bottom" RelativePanel.Below="LeftPanel">
                 <Button x:Name="BtnSignup" Content="Sign Up" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Handle_Signup"/>
-                <Button x:Name="BtnLogin" RelativePanel.RightOf="BtnSignup" Margin="40, 0, 0, 0" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Click="BtnLogin_Click"/>
-            </RelativePanel>
+                <Button x:Name="BtnLogin" Margin="40, 0, 0, 0" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Click="BtnLogin_Click"/>
+            </StackPanel>
         </RelativePanel>
     </ScrollViewer>
 </Page>

@@ -12,7 +12,9 @@ MainPage.xbf
 MusicBox.xr.xml
 Views\ListSong.xbf
 Views\Login.xbf
+Views\MyAccount.xbf
+Views\MySong.xbf
 Views\NavigationView.xbf
 Views\Register.xbf
-Views\SongForm.xbf
+Views\SettingsPage.xbf
 Properties\Default.rd.xml

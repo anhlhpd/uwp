@@ -177,6 +177,9 @@
   <data name="PropertyCategoryFormat" xml:space="preserve">
     <value>Format</value>
   </data>
+  <data name="InvalidEnumArgument" xml:space="preserve">
+    <value>The value of argument '{0}' ({1}) is invalid for Enum type '{2}'.</value>
+  </data>
   <data name="PropertyCategoryAction" xml:space="preserve">
     <value>Action</value>
   </data>

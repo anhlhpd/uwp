@@ -12,6 +12,7 @@ using System.Net;
 using System.Net.Http;
 using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Data.Json;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -57,17 +58,11 @@ namespace MusicBox
                 
                 if (response.StatusCode == HttpStatusCode.Created)
                 {
-                    this.Frame.Navigate(typeof(Views.ListSong));
+                    await Task.Delay(5000); 
+                    this.Frame.Navigate(typeof(Views.NavigationView));
                 }
                 else
                 {
-                    var dialog = new ContentDialog()
-                    {
-                        Title = "Error!",
-                        MaxWidth = this.ActualWidth,
-                        Content = "There's an error! Please login again!",
-                        CloseButtonText = "I know!"
-                    };
                     Load_Page();
                 }                
             }

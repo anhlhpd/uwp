@@ -1,0 +1,96 @@
+﻿<Page
+    x:Class="MusicBox.Views.MySong"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MusicBox.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:entity="using:MusicBox.Entity"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <ScrollViewer>
+            <Pivot>
+                <Pivot.Title>
+                    <TextBlock Text="My Song" FontSize="30"/>
+                </Pivot.Title>
+                <PivotItem Header="My Song" Margin="0, 0, 0, 95">
+                    <Grid>
+                        <ListView ItemsSource="{x:Bind ListMySong, Mode=TwoWay}" x:Name="MenuListMySong">
+                            <ListView.HeaderTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="12" Background="AliceBlue">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="60"/>
+                                            <ColumnDefinition Width="300"/>
+                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Thumbnail" HorizontalAlignment="Center" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                                        <TextBlock Grid.Column="1" Text="Name"  HorizontalAlignment="Center" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                                        <TextBlock Grid.Column="2" Text="Singer"  HorizontalAlignment="Center" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                                        <TextBlock Grid.Column="3" Text="Description"  HorizontalAlignment="Center" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.HeaderTemplate>
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="entity:Song">
+                                    <StackPanel Orientation="Horizontal" Tag="{Binding}" AutomationProperties.Name="{x:Bind name}"
+                                                Tapped="StackPanel_Tap">
+                                        <Grid Height="100">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="48"/>
+                                                <ColumnDefinition Width="60"/>
+                                                <ColumnDefinition Width="300"/>
+                                                <ColumnDefinition Width="150"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Ellipse Height="32" Width="32" VerticalAlignment="Center">
+                                                <Ellipse.Fill>
+                                                    <ImageBrush ImageSource="Placeholder.png"/>
+                                                </Ellipse.Fill>
+                                            </Ellipse>
+                                            <Image Grid.Column="1" VerticalAlignment="Center" Source="{x:Bind thumbnail}" />
+                                            <TextBlock Grid.Column="2" VerticalAlignment="Center" Text="{x:Bind name}"/>
+                                            <TextBlock Grid.Column="3" VerticalAlignment="Center" Text="{x:Bind singer}"/>
+                                            <TextBlock Grid.Column="4" VerticalAlignment="Center" Text="{x:Bind description}"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </PivotItem>
+            </Pivot>
+        </ScrollViewer>
+
+        <StackPanel VerticalAlignment="Bottom" Background="Black">
+            <MediaPlayerElement Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                                    x:Name="Player" AreTransportControlsEnabled="True"
+                                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                    Stretch="Uniform">
+                <MediaPlayerElement.TransportControls>
+                    <MediaTransportControls IsCompact="False"
+                                               IsZoomButtonVisible="True"
+                                               IsZoomEnabled="True"
+                                               IsPlaybackRateButtonVisible="True"
+                                               IsPlaybackRateEnabled="True"
+                                                    IsFastForwardButtonVisible="True" 
+                                                    IsSkipForwardButtonVisible="True" 
+                                                    IsVolumeButtonVisible="True"
+                                                    IsNextTrackButtonVisible="True"
+                                                    IsPreviousTrackButtonVisible="True"
+                                                    IsSkipBackwardButtonVisible="True"
+                                                    IsFastRewindButtonVisible="True"
+                                            IsFastForwardEnabled="True"
+                                            IsFastRewindEnabled="True"
+                                            IsSkipBackwardEnabled="True"
+                                            IsSkipForwardEnabled="True">
+                    </MediaTransportControls>
+                </MediaPlayerElement.TransportControls>
+            </MediaPlayerElement>
+        </StackPanel>
+    </Grid>
+</Page>
