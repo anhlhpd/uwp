@@ -1,0 +1,65 @@
+﻿"Visual studio 2017 professional keys:"
+KBJFW-NXHK6-W4WJM-CRMQB-G3CDH
+ 
+"Visual studio Enterprise Keys:"
+NJVYC-BMHX2-G77MM-4XJMR-6Q8QF
+ 
+"Visual studio Pro Keys:"
+KBJFW-NXHK6-W4WJM-CRMQB-G3CDH
+HMGNV-WCYXV-X7G9W-YCX63-B98R2
+
+
+https://1-dot-backup-server-002.appspot.com/member/infor?id=100
+https://1-dot-backup-server-002.appspot.com/song/create
+{"id":1536720472685,"name":"Luyến","description":"Đào","singer":"Hung","author":"hung","thumbnail":"https://stepupandlive.files.wordpress.com/2014/09/3d-animated-frog-image.jpg", "link":"link", "memberId": 1000}
+http://backup-server-002.appspot.com/member/register
+https://1-dot-backup-server-002.appspot.com/member/register
+
+[{"id":1538477508198,"name":"Luyến","description":"Đào","singer":"Hung","author":"hung","thumbnail":"https://stepupandlive.files.wordpress.com/2014/09/3d-animated-frog-image.jpg","link":"link","memberId":0,"createdAt":"Oct 2, 2018 10:51:48 AM","updatedAt":"Oct 2, 2018 10:51:48 AM","status":1},{"id":1538486071540,"name":"Luyến","description":"Đào","singer":"Hung","author":"hung","thumbnail":"https://stepupandlive.files.wordpress.com/2014/09/3d-animated-frog-image.jpg","link":"link","memberId":0,"createdAt":"Oct 2, 2018 1:14:31 PM","updatedAt":"Oct 2, 2018 1:14:31 PM","status":1}]
+
+   private long id;
+    private String name;
+    private String description;
+    private String singer;
+    private String author;
+    private String thumbnail;
+    private String link;
+    @Index
+    private long memberId;
+    private Date createdAt;
+    private Date updatedAt;
+    @Index
+    private int status;
+
+https://2-dot-backup-server-002.appspot.com/_api/v2/songs
+Lấy danh sách bài hát.
+Method Get
+Header
+Authorization: Basic your_token
+
+https://2-dot-backup-server-002.appspot.com/_api/v2/songs/get-mine
+Lấy danh sách bài hát của tôi.
+Method Get
+Header
+Authorization: Basic your_token
+
+https://2-dot-backup-server-002.appspot.com/_api/v2/songs
+Lưu thông tin bài hát.
+Method POST
+Header
+Authorization: Basic your_token
+Data gồm các trường 
+@Id
+    private long id;
+    private String name;
+    private String description;
+    private String singer;
+    private String author;
+    private String thumbnail;
+    private String link;
+    @Index
+    private long memberId;
+    private Date createdAt;
+    private Date updatedAt;
+    @Index
+    private int status;
